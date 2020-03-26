@@ -6,10 +6,10 @@ global:
 scrape_configs:
  - job_name: 'prometheus'
    static_configs:
-     - targets: ['172.17.0.10:9090']
+     - targets: ['172.25.0.10:9090']
  - job_name: 'node-exporter'
    static_configs:
-     - targets: ['172.17.0.11:9100']
+     - targets: ['172.25.0.11:9100']
  - job_name: 'cAdvisor'
    static_configs:
-     - targets: ['172.17.0.12:8080']
+     - targets: ['172.25.0.12:8080']
