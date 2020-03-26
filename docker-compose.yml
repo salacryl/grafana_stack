@@ -7,11 +7,19 @@ services:
      - /opt/docker/data/prometheus/prometheus_db:/var/lib/prometheus
    command:
      - '--config.file=/etc/prometheus/prometheus.yml'
+     networks:
+      bridge:
+        ipv4_address: 172.17.0.10
  node-exporter:
   image: prom/node-exporter
+  networks:
+      bridge:
+        ipv4_address: 172.17.0.11
  cadvisor:
   image: google/cadvisor:latest
-
+ networks:
+      bridge:
+        ipv4_address: 172.17.0.12
   volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
@@ -27,4 +35,7 @@ services:
    - /opt/docker/data/grafana/grafana_db:/var/lib/grafana
   depends_on:
    - prometheus
+  networks:
+      bridge:
+        ipv4_address: 172.17.0.13
 
