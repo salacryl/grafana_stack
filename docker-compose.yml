@@ -8,18 +8,18 @@ services:
    command:
      - '--config.file=/etc/prometheus/prometheus.yml'
    networks:
-     bridge:
-       ipv4_address: 172.17.0.10
+     default:
+       ipv4_address: 172.25.0.10
  node-exporter:
   image: prom/node-exporter
   networks:
-      bridge:
-        ipv4_address: 172.17.0.11
+      default:
+        ipv4_address: 172.25.0.11
  cadvisor:
   image: google/cadvisor:latest
   networks:
-      bridge:
-        ipv4_address: 172.17.0.12
+      default:
+        ipv4_address: 172.25.0.12
   volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
@@ -36,8 +36,8 @@ services:
   depends_on:
    - prometheus
   networks:
-      bridge:
-        ipv4_address: 172.17.0.13
+      default:
+        ipv4_address: 172.25.0.13
 
 networks:
   default:
