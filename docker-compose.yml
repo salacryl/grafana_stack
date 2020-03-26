@@ -1,0 +1,30 @@
+version: '3'
+services:
+ prometheus:
+   image: prom/prometheus:latest
+   volumes:
+     - /opt/docker/data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+     - /opt/docker/data/prometheus/prometheus_db:/var/lib/prometheus
+   command:
+     - '--config.file=/etc/prometheus/prometheus.yml'
+ node-exporter:
+  image: prom/node-exporter
+ cadvisor:
+  image: google/cadvisor:latest
+
+  volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+
+ grafana:
+  image: grafana/grafana
+  user: "1000"
+  environment:
+   - GF_SECURITY_ADMIN_PASSWORD=passW0rd
+  volumes:
+   - /opt/docker/data/grafana/grafana_db:/var/lib/grafana
+  depends_on:
+   - prometheus
+
