@@ -7,9 +7,9 @@ services:
      - /opt/docker/data/prometheus/prometheus_db:/var/lib/prometheus
    command:
      - '--config.file=/etc/prometheus/prometheus.yml'
-     networks:
-      bridge:
-        ipv4_address: 172.17.0.10
+   networks:
+     bridge:
+       ipv4_address: 172.17.0.10
  node-exporter:
   image: prom/node-exporter
   networks:
@@ -17,7 +17,7 @@ services:
         ipv4_address: 172.17.0.11
  cadvisor:
   image: google/cadvisor:latest
- networks:
+  networks:
       bridge:
         ipv4_address: 172.17.0.12
   volumes:
@@ -38,4 +38,3 @@ services:
   networks:
       bridge:
         ipv4_address: 172.17.0.13
-
