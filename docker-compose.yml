@@ -32,7 +32,7 @@ services:
   environment:
    - GF_SECURITY_ADMIN_PASSWORD=passW0rd
   volumes:
-   - /opt/docker/data/grafana/grafana_db:/var/lib/grafana
+   - grafana_db:/var/lib/grafana
   depends_on:
    - prometheus
   networks:
